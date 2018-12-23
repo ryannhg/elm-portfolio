@@ -23,7 +23,7 @@ const getPageMetaFromElm = _ => {
 }
 
 // Pug rendering stuff
-const publicDir = path.join(__dirname, 'public')
+const publicDir = path.join(__dirname, '..', 'public')
 
 const toHtml = (parentSlugs) => (page) => {
   const slugs = parentSlugs.concat([ page.slug ])
@@ -31,7 +31,7 @@ const toHtml = (parentSlugs) => (page) => {
   return {
     file: path.join(publicDir, (path_ || 'index') + '.html'),
     url: '/' + path_,
-    html: pug.renderFile('index.pug', { page }),
+    html: pug.renderFile(path.join(__dirname, 'index.pug'), { page }),
     children: page.children.map(toHtml(slugs))
   }
 }
