@@ -36,11 +36,11 @@ const toHtml = (parentSlugs) => (page) => {
   }
 }
 
-const flattenChildren = (pages, { file, url, html, children }) => {
-  pages = pages.concat([ { file, url, html } ])
-  pages = pages.concat(children.reduce(flattenChildren, []))
-  return pages
-}
+const flattenChildren = (pages, { file, url, html, children }) =>
+  pages.concat(children.reduce(
+    flattenChildren,
+    [ { file, url, html } ])
+  )
 
 const dirOfFile = filename => {
   const pieces = filename.split('/')
