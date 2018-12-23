@@ -9,7 +9,7 @@
     "build": "npm run build:elm && npm run generate",
     "build:elm": "elm make src/Main.elm --optimize --output public/elm.js || true",
     "build:elm:watch": "npm run build:elm && chokidar './src' -c 'npm run build:elm'",
-    "build:generator" : "elm make src/Generator.elm --optimize --output generator.elm.js || true",
+    "build:generator": "elm make src/Generator.elm --optimize --output generator.elm.js || true",
     "build:generator:watch": "npm run build:generator && chokidar './src' -c 'npm run build:generator'",
     "generate": "npm run build:generator && node generator",
     "generate:watch": "npm run generate && chokidar 'generator.js' -c 'npm run generate'"
@@ -20,6 +20,7 @@
     "chokidar-cli": "^1.2.1",
     "elm": "^0.19.0-bugfix2",
     "fs-readdir-recursive": "^1.1.0",
+    "pug": "^2.0.3",
     "serve": "^10.1.1"
   }
 }

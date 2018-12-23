@@ -111,14 +111,3 @@ encodePage (PageInfo page) =
         , ( "image", E.string page.image )
         , ( "children", E.list encodePage page.children )
         ]
-
-
-
--- pageInfoDecoder : D.Decoder PageInfo
--- pageInfoDecoder =
---     D.map5
---         (D.field "title" D.string)
---         (D.field "slug" D.string)
---         (D.field "description" D.string)
---         (D.field "image" D.string)
---         (D.lazy (\_ -> D.field "children" ))

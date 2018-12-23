@@ -2,4 +2,4 @@ elm-stuff
 node_modules
 generator.elm.js
 public/elm.js
-public/*/**.html
+public/**/*.html
