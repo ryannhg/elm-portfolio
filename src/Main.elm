@@ -1,10 +1,41 @@
-module Main exposing (main)
+port module Main exposing (main)
 
+import Browser exposing (Document, UrlRequest(..))
+import Browser.Navigation as Nav exposing (Key)
 import Css exposing (..)
-import Css.Global exposing (body, each, global, html, id, typeSelector)
+import Css.Global
+    exposing
+        ( body
+        , children
+        , each
+        , global
+        , html
+        , id
+        , typeSelector
+        )
 import Html
+import Html.Attributes
 import Html.Styled exposing (..)
-import Html.Styled.Attributes as Attr exposing (class, css, href, placeholder, type_)
+import Html.Styled.Attributes as Attr
+    exposing
+        ( class
+        , css
+        , href
+        , placeholder
+        , type_
+        )
+import Markdown
+import Page exposing (Page, Section(..))
+import Page.About
+import Page.Home
+import Page.NotFound
+import Page.Thoughts
+import Page.Thoughts.YourFirstWebsite
+import Page.Work
+import Page.Work.DentonDesign
+import Page.Work.MichaelCorrey
+import Route exposing (Route(..))
+import Url exposing (Url)
 
 
 semibold =
@@ -22,8 +53,113 @@ colors =
     }
 
 
+type alias Flags =
+    ()
+
+
+type alias Model =
+    { route : Route
+    , key : Key
+    }
+
+
+type Msg
+    = OnUrlChange Url
+    | OnUrlRequest UrlRequest
+
+
+port outgoing : String -> Cmd msg
+
+
+main : Program Flags Model Msg
 main =
-    toUnstyled (div [] [ globalStyles, view ])
+    Browser.application
+        { init = init
+        , update = update
+        , view = view
+        , subscriptions = always Sub.none
+        , onUrlChange = OnUrlChange
+        , onUrlRequest = OnUrlRequest
+        }
+
+
+init : Flags -> Url -> Key -> ( Model, Cmd Msg )
+init _ url key =
+    ( Model
+        (Route.fromUrl url)
+        key
+    , Cmd.none
+    )
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        OnUrlChange url ->
+            ( { model | route = Route.fromUrl url }
+            , outgoing "URL_CHANGE"
+            )
+
+        OnUrlRequest urlRequest ->
+            case urlRequest of
+                Internal url ->
+                    ( model
+                    , Nav.pushUrl model.key (Url.toString url)
+                    )
+
+                External url ->
+                    ( model
+                    , Nav.load url
+                    )
+
+
+view : Model -> Document Msg
+view model =
+    let
+        page : Page
+        page =
+            case model.route of
+                Home ->
+                    Page.Home.page
+
+                About ->
+                    Page.About.page
+
+                Work ->
+                    Page.Work.page
+
+                WorkDetail slug_ ->
+                    case slug_ of
+                        "denton-design" ->
+                            Page.Work.DentonDesign.page
+
+                        "michael-correy" ->
+                            Page.Work.MichaelCorrey.page
+
+                        _ ->
+                            Page.NotFound.page
+
+                Thought tag ->
+                    Page.Thoughts.page
+
+                ThoughtDetail slug_ ->
+                    case slug_ of
+                        "your-first-website" ->
+                            Page.Thoughts.YourFirstWebsite.page
+
+                        _ ->
+                            Page.NotFound.page
+
+                NotFound ->
+                    Page.NotFound.page
+    in
+    { title = page.title
+    , body =
+        List.map toUnstyled
+            [ globalStyles
+            , viewPage page
+            ]
+    }
 
 
 globalStyles =
@@ -64,6 +200,73 @@ globalStyles =
             , fontWeight (int 300)
             , fontSize (rem 1)
             ]
+        , Css.Global.class "rich-text"
+            [ padding2 (rem 4) (rem 1)
+            , boxSizing borderBox
+            , margin2 zero auto
+            , width (pct 100)
+            , maxWidth (rem 30)
+            , children
+                [ typeSelector "*"
+                    [ marginTop (rem 1)
+                    , firstChild
+                        [ marginTop zero
+                        ]
+                    ]
+                , typeSelector "h1"
+                    [ fontWeight semibold
+                    , marginTop (rem 2)
+                    , fontSize (rem 2)
+                    ]
+                , typeSelector "h2"
+                    [ fontWeight semibold
+                    , marginTop (rem 2)
+                    , fontSize (rem 2)
+                    ]
+                , typeSelector "h3"
+                    [ fontWeight semibold
+                    , fontSize (rem 1.5)
+                    ]
+                , typeSelector "h4"
+                    [ fontWeight semibold
+                    , fontSize (rem 1.25)
+                    ]
+                , typeSelector "h5"
+                    [ fontWeight semibold
+                    , fontSize (rem 1)
+                    ]
+                , typeSelector "h6"
+                    [ fontWeight semibold
+                    , fontSize (rem 1)
+                    ]
+                , typeSelector "p"
+                    [ lineHeight (num 1.3)
+                    ]
+                , typeSelector "pre"
+                    [ width (pct 100)
+                    , overflowX auto
+                    , fontSize (px 18)
+                    , lineHeight (num 1.4)
+                    , children
+                        [ typeSelector "code"
+                            [ padding (rem 1)
+                            ]
+                        ]
+                    ]
+                ]
+            , Css.Global.descendants
+                [ typeSelector "a"
+                    [ color colors.orange
+                    , textDecoration underline
+                    , fontWeight semibold
+                    ]
+                , typeSelector "img"
+                    [ maxWidth (pct 100)
+                    , display block
+                    , margin2 zero auto
+                    ]
+                ]
+            ]
         ]
 
 
@@ -72,66 +275,6 @@ type alias Post =
     , date : String
     , tags : List String
     }
-
-
-type Tag
-    = Elm
-    | Web
-    | Functional
-    | Javascript
-    | ES6
-
-
-type alias TagInfo =
-    { slug : String
-    , relatedTags : List Tag
-    }
-
-
-relatedTags : List ( Tag, Tag )
-relatedTags =
-    [ ( Javascript, Web )
-    , ( Elm, Web )
-    , ( Elm, Functional )
-    , ( Javascript, ES6 )
-    ]
-
-
-relatedTagsFor : Tag -> List Tag
-relatedTagsFor tag =
-    relatedTags
-        |> List.filterMap
-            (\( left, right ) ->
-                if left == tag then
-                    Just right
-
-                else if right == tag then
-                    Just left
-
-                else
-                    Nothing
-            )
-
-
-tagInfo : Tag -> TagInfo
-tagInfo tag =
-    relatedTagsFor tag
-        |> (case tag of
-                Elm ->
-                    TagInfo "elm"
-
-                Javascript ->
-                    TagInfo "javascript"
-
-                Web ->
-                    TagInfo "web"
-
-                Functional ->
-                    TagInfo "functional"
-
-                ES6 ->
-                    TagInfo "es6"
-           )
 
 
 posts : List Post
@@ -178,36 +321,50 @@ keepOnlyAlphaNums =
         >> String.fromList
 
 
-view =
+viewPage page =
     div [ css [ position relative ] ]
         [ navbar
-        , hero
+        , hero page.title page.description page.image.src
         , div
             [ css
                 [ position relative
                 , zIndex (int 1)
-                , marginBottom (rem 3)
+                , marginBottom (rem 4)
                 , backgroundColor colors.white
                 ]
             ]
-            [ latestPosts ]
+            (List.map viewSection page.sections)
         , myFooter
         ]
 
 
 navbar =
-    header
-        [ css
-            [ position fixed
-            , top zero
-            , left zero
-            , right zero
-            , backgroundColor colors.orange
-            , color colors.white
-            , zIndex (int 2)
+    header []
+        [ div
+            [ css
+                [ backgroundColor colors.orange
+                , position fixed
+                , top zero
+                , left zero
+                , right zero
+                , height (px 60)
+                , zIndex (int 2)
+                ]
             ]
-        ]
-        [ div [ css [ padding (rem 1), displayFlex, justifyContent spaceBetween ] ]
+            []
+        , div
+            [ css
+                [ position fixed
+                , top zero
+                , left zero
+                , right zero
+                , zIndex (int 5)
+                , padding (rem 1)
+                , color colors.white
+                , displayFlex
+                , justifyContent spaceBetween
+                ]
+            ]
             [ a
                 [ href "/"
                 , css
@@ -236,6 +393,62 @@ navbar =
         ]
 
 
+searchbar =
+    div
+        [ css
+            [ position absolute
+            , bottom zero
+            , left (pct 50)
+            , transform (translate2 (pct -50) (pct 50))
+            , padding2 zero (rem 1)
+            , boxSizing borderBox
+            , width (pct 100)
+            , maxWidth (px 360)
+            ]
+        ]
+        [ form
+            [ css
+                [ boxShadow4 zero (rem 0.5) (rem 1.5) (rgba 0 0 0 0.25)
+                , backgroundColor colors.white
+                , displayFlex
+                , borderRadius (px 4)
+                , borderColor colors.lightGray
+                , overflow hidden
+                , margin zero
+                ]
+            ]
+            [ input
+                [ type_ "search"
+                , placeholder "Search by topic..."
+                , css
+                    [ fontFamily inherit
+                    , property "-webkit-appearance" "none"
+                    , fontSize inherit
+                    , padding2 (rem 0.75) (rem 1)
+                    , border zero
+                    , backgroundColor colors.white
+                    , width (pct 100)
+                    ]
+                ]
+                []
+            , button
+                [ css
+                    [ fontFamily inherit
+                    , fontSize inherit
+                    , color (rgba 0 0 0 0.25)
+                    , padding zero
+                    , border zero
+                    , width (px 60)
+                    , backgroundColor colors.white
+                    , textAlign center
+                    ]
+                ]
+                [ span [ class "fa fa-search" ] []
+                ]
+            ]
+        ]
+
+
 myFooter =
     footer
         [ css
@@ -253,11 +466,11 @@ myFooter =
                 [ padding (rem 1)
                 , displayFlex
                 , alignItems center
-                , justifyContent spaceBetween
+                , justifyContent center
                 ]
             ]
-            [ text "Stay Connected"
-            , nav [ css [ displayFlex ] ] <|
+            [ text ""
+            , nav [ css [ displayFlex, fontSize (rem 1.5) ] ] <|
                 List.map
                     (\( icon, url ) ->
                         a
@@ -278,7 +491,7 @@ myFooter =
         ]
 
 
-hero =
+hero title description image =
     section
         [ css
             [ padding2 (rem 6) zero
@@ -295,7 +508,7 @@ hero =
                 , right zero
                 , bottom zero
                 , opacity (num 0.2)
-                , backgroundImage (url "https://avatars2.githubusercontent.com/u/6187256")
+                , backgroundImage (url image)
                 , backgroundPosition center
                 , backgroundSize cover
 
@@ -310,75 +523,39 @@ hero =
                 , textAlign center
                 ]
             ]
-            [ text "Ryan Haskell-Glatz"
+            [ text title
             ]
         , h2
             [ css
                 [ fontSize (rem 1.5)
+                , lineHeight (num 1)
                 , textAlign center
                 ]
             ]
-            [ text "a web developer." ]
-        , div
-            [ css
-                [ position absolute
-                , bottom zero
-                , left (pct 50)
-                , transform (translate2 (pct -50) (pct 50))
-                , padding2 zero (rem 1)
-                , boxSizing borderBox
-                , width (pct 100)
-                , maxWidth (px 360)
-                ]
-            ]
-            [ form
-                [ css
-                    [ boxShadow4 zero (rem 0.5) (rem 1.5) (rgba 0 0 0 0.25)
-                    , backgroundColor colors.white
-                    , displayFlex
-                    , borderRadius (px 4)
-                    , borderColor colors.lightGray
-                    , overflow hidden
-                    , margin zero
-                    ]
-                ]
-                [ input
-                    [ type_ "search"
-                    , placeholder "Search by topic..."
-                    , css
-                        [ fontFamily inherit
-                        , property "-webkit-appearance" "none"
-                        , fontSize inherit
-                        , padding2 (rem 0.75) (rem 1)
-                        , border zero
-                        , backgroundColor colors.white
-                        , width (pct 100)
-                        ]
-                    ]
-                    []
-                , button
-                    [ css
-                        [ fontFamily inherit
-                        , fontSize inherit
-                        , color (rgba 0 0 0 0.25)
-                        , padding zero
-                        , border zero
-                        , width (px 50)
-                        , backgroundColor colors.white
-                        , textAlign center
-                        ]
-                    ]
-                    [ span [ class "fa fa-search" ] []
-                    ]
-                ]
-            ]
+            [ text description ]
+
+        -- , searchbar
         ]
+
+
+viewSection : Section -> Html Msg
+viewSection section =
+    case section of
+        Content markdown ->
+            fromUnstyled <|
+                Markdown.toHtml
+                    [ Html.Attributes.class "rich-text" ]
+                    markdown
+
+        LatestPosts ->
+            latestPosts
 
 
 latestPosts =
     section
         [ css
             [ padding2 (rem 4) (rem 1)
+            , position relative
             ]
         ]
         [ h3

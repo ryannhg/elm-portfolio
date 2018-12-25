@@ -6,13 +6,36 @@ html(lang="en")
     title=page.title
     meta(name="description" content=page.description)
     link(rel="icon" href="/favicon.png")
+    link(href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet")
     link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous")
     style.
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       }
+      @font-face {
+        font-display: swap;
+        font-family: Fira Code;
+        src: url(/fonts/FiraCode.woff2) format("woff2"), url(/fonts/FiraCode.woff) format("woff");
+      }
+      code {
+        font-family: 'Fira Code', monospace;
+      }
   body
     #app
     script(src="/elm.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/elm.min.js")
     script.
-      Elm.Main.init({ node: document.getElementById('app') })
+      var app = Elm.Main.init({ node: document.getElementById('app') })
+      app.ports.outgoing.subscribe(function (message) {
+        switch (message) {
+          case 'URL_CHANGE':
+            return setTimeout(function () {
+              document.querySelectorAll('pre code')
+                .forEach(hljs.highlightBlock)
+            }, 100)
+          default:
+            window.open(message)
+        }
+      })
+      hljs.initHighlighting()

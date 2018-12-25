@@ -12,7 +12,7 @@
     "build:generator": "elm make src/Generator.elm --optimize --output generator/generator.elm.js || true",
     "build:generator:watch": "npm run build:generator && chokidar './src' -c 'npm run build:generator'",
     "generate": "npm run build:generator && node generator",
-    "generate:watch": "npm run generate && chokidar './generator' -c 'npm run generate'"
+    "generate:watch": "npm run generate && chokidar './generator/index.*' -c 'npm run generate'"
   },
   "author": "Ryan Haskell-Glatz",
   "license": "ISC",

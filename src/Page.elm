@@ -1,8 +1,8 @@
 module Page exposing
-    ( Markdown
+    ( Image
+    , Markdown
     , Page
-    , Section
-    , Image
+    , Section(..)
     , page
     )
 
@@ -42,5 +42,5 @@ type alias Image =
 
 
 type Section
-    = Hero
-    | Content Markdown
+    = Content Markdown
+    | LatestPosts
