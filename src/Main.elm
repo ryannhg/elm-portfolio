@@ -107,7 +107,7 @@ update msg model =
 
                 External url ->
                     ( model
-                    , Nav.load url
+                    , outgoing url
                     )
 
 
@@ -200,6 +200,10 @@ globalStyles =
                         [ marginTop zero
                         ]
                     ]
+                , typeSelector "hr"
+                    [ margin2 (rem 1) zero
+                    , border zero
+                    ]
                 , typeSelector "h1"
                     [ fontWeight semibold
                     , marginTop (rem 2)
@@ -225,6 +229,7 @@ globalStyles =
                 , typeSelector "h6"
                     [ fontWeight semibold
                     , fontSize (rem 1)
+                    , marginTop (rem 0.5)
                     ]
                 , typeSelector "p"
                     [ lineHeight (num 1.3)

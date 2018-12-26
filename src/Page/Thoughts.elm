@@ -13,7 +13,17 @@ page =
             "A notepad, glasses, and a pencil."
         )
         1545542278411
-        [ Page.LatestPosts
+        [ Page.Content """
+## Latest posts
+---
+
+### [This website](/thoughts/this-website)
+###### December 2018
+
+The first post on this website, is _about_ this website. Weird, right? I'm so meta I can't
+even handle it anymore...
+
+"""
         ]
 
 

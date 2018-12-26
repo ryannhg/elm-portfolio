@@ -31,6 +31,8 @@ several awards:
 
 You can check out the site here: [Denton Design](https://natedentondesign.com/)
 
+---
+
 ## Lucky Day Gaming
 ##### May 2018
 
@@ -44,6 +46,8 @@ KeystoneJS allowed the client to create their own page templates and easily swap
 out content when they had some new information to share!
 
 Check out the full site here: [Lucky Day Gaming](https://www.luckydaygaming.com/)
+
+---
 
 ## Michael Correy
 ##### January 2018

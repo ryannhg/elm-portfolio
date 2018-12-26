@@ -24,24 +24,30 @@ That's right, I'm a geeky web boy. I love building things in Elm, and I'm
 always trying to keep an eye out for a new language to stretch out my brain and make
 me feel weird and insecure.
 
-[About me](/about)
+[Read my origin story](/about)
+
+---
+
+
+## My work.
+
+I love building awesome websites in my free time. I've already made a couple
+award-winning sites in my free time, and I've written about them so you can learn
+more about them.
+
+[Explore my work](/work)
+
+---
 
 ## My latest thoughts.
 
 In an attempt to share some of the neat stuff I've learned recently, I'm creating
 a collection of articles on random tech topics.
 
-You can browse the latest posts, and even filter by tag.
+You can browse the latest posts by checking it out
 
-[Check it out!](/thoughts)
+[Find something you like](/thoughts)
 
-## Work I'm proud of.
-
-I love building awesome websites in my free time. I've already made a couple
-award-winning sites in my free time, and I've written about them so you can learn
-more about them.
-
-[My work](/work)
 """
                 ]
     in
