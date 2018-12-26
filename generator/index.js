@@ -31,7 +31,7 @@ const toHtml = (parentSlugs) => (page) => {
   return {
     file: path.join(publicDir, (path_ || 'index') + '.html'),
     url: '/' + path_,
-    html: pug.renderFile(path.join(__dirname, 'index.pug'), { page }),
+    html: pug.renderFile(path.join(__dirname, 'index.pug'), { page: { ...page, url: 'https://www.ryannhg.com/' + path_ } }),
     children: page.children.map(toHtml(slugs))
   }
 }
