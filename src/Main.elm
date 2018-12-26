@@ -30,7 +30,7 @@ import Page.About
 import Page.Home
 import Page.NotFound
 import Page.Thoughts
-import Page.Thoughts.YourFirstWebsite
+import Page.Thoughts.CurryingInJS
 import Page.Work
 import Route exposing (Route(..))
 import Url exposing (Url)
@@ -131,8 +131,8 @@ view model =
 
                 ThoughtDetail slug_ ->
                     case slug_ of
-                        "your-first-website" ->
-                            Page.Thoughts.YourFirstWebsite.page
+                        "currying-in-js" ->
+                            Page.Thoughts.CurryingInJS.page
 
                         _ ->
                             Page.NotFound.page
@@ -231,17 +231,30 @@ globalStyles =
                     , fontSize (rem 1)
                     , marginTop (rem 0.5)
                     ]
-                , typeSelector "p"
+                , each
+                    [ typeSelector "p"
+                    , typeSelector "ol"
+                    , typeSelector "ul"
+                    ]
                     [ lineHeight (num 1.3)
                     ]
+                , each
+                    [ typeSelector "ol"
+                    , typeSelector "ul"
+                    ]
+                    [ padding zero
+                    , paddingLeft (rem 1)
+                    ]
                 , typeSelector "pre"
-                    [ width (pct 100)
+                    [ width (calc (pct 100) plus (rem 2))
+                    , margin2 (rem 1) (rem -1)
                     , overflowX auto
                     , fontSize (px 18)
                     , lineHeight (num 1.4)
                     , children
                         [ typeSelector "code"
                             [ padding (rem 1)
+                            , fontSize (px 16)
                             ]
                         ]
                     ]
@@ -251,6 +264,9 @@ globalStyles =
                     [ color colors.orange
                     , textDecoration underline
                     , fontWeight semibold
+                    ]
+                , typeSelector "li"
+                    [ marginTop (rem 0.5)
                     ]
                 , typeSelector "img"
                     [ maxWidth (pct 100)
@@ -271,22 +287,7 @@ type alias Post =
 
 posts : List Post
 posts =
-    [ Post "Elm is dope!"
-        "December 2018"
-        [ "elm", "web", "functional" ]
-    , Post "Clojure is dope!"
-        "November 2018"
-        [ "clojure", "functional", "simple", "functional", "simple", "functional", "simple", "functional", "simple" ]
-    , Post "Docker is dope!"
-        "October 2018"
-        [ "docker", "containers", "whales" ]
-    , Post "Clojure is dope!"
-        "November 2018"
-        [ "clojure", "functional", "simple" ]
-    , Post "Docker is dope!"
-        "October 2018"
-        [ "docker", "containers", "whales" ]
-    ]
+    []
 
 
 link : Post -> String
@@ -353,34 +354,43 @@ navbar =
                 , zIndex (int 5)
                 , padding (rem 1)
                 , color colors.white
-                , displayFlex
-                , justifyContent spaceBetween
                 ]
             ]
-            [ a
-                [ href "/"
-                , css
-                    [ fontWeight semibold
+            [ div
+                [ css
+                    [ displayFlex
+                    , justifyContent spaceBetween
+                    , maxWidth (px 960)
+                    , width (pct 100)
+                    , margin2 zero auto
+                    , boxSizing borderBox
                     ]
                 ]
-                [ text "Ryan." ]
-            , nav [ css [ displayFlex ] ] <|
-                List.map
-                    (\( label, url ) ->
-                        a
-                            [ href url
-                            , css
-                                [ marginRight (rem 1)
-                                , lastChild [ marginRight zero ]
-                                ]
-                            ]
-                            [ text label
-                            ]
-                    )
-                    [ ( "work", "/work" )
-                    , ( "thoughts", "/thoughts" )
-                    , ( "about", "/about" )
+                [ a
+                    [ href "/"
+                    , css
+                        [ fontWeight semibold
+                        ]
                     ]
+                    [ text "Ryan." ]
+                , nav [ css [ displayFlex ] ] <|
+                    List.map
+                        (\( label, url ) ->
+                            a
+                                [ href url
+                                , css
+                                    [ marginRight (rem 1)
+                                    , lastChild [ marginRight zero ]
+                                    ]
+                                ]
+                                [ text label
+                                ]
+                        )
+                        [ ( "work", "/work" )
+                        , ( "thoughts", "/thoughts" )
+                        , ( "about", "/about" )
+                        ]
+                ]
             ]
         ]
 
@@ -486,7 +496,7 @@ myFooter =
 hero title description image =
     section
         [ css
-            [ padding2 (rem 6) zero
+            [ padding2 (rem 6) (rem 1)
             , color colors.white
             , backgroundColor colors.orange
             , position relative
@@ -520,8 +530,11 @@ hero title description image =
         , h2
             [ css
                 [ fontSize (rem 1.5)
-                , lineHeight (num 1)
+                , lineHeight (num 1.1)
                 , textAlign center
+                , paddingTop (rem 0.5)
+                , maxWidth (rem 30)
+                , margin2 zero auto
                 ]
             ]
             [ text description ]

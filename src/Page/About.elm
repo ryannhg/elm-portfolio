@@ -113,7 +113,7 @@ To keep it all simple and straightforward, I started using __Docker__ to make
 reproducing my development environment a breeze. Soon `docker-compose up` was all
 I had to do to spin up my databases, gulp tasks, and web server!
 
-### Unlearning everything.
+## Unlearning everything.
 
 A few months after starting my career in web development, I was taking a train ride
 home. A medium article called "[So you want to be a functional programmer](https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536)"
@@ -137,7 +137,7 @@ positive impact it has had on my career.
 Meanwhile, my NodeJS applications are covered in `=>` functions and ES6 is casually
 destroying the relationship I have with my coworkers.
 
-### What's next?
+## What's next?
 
 Currently, I'm grappling between learning Elixir, Rust, Haskell, and Clojure. I'm 
 trying to find a backend language that gave me the same level of personal growth that

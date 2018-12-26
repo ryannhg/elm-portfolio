@@ -17,11 +17,10 @@ page =
 ## Latest posts
 ---
 
-### [This website](/thoughts/this-website)
+### [Currying in JS](/thoughts/currying-in-js)
 ###### December 2018
 
-The first post on this website, is _about_ this website. Weird, right? I'm so meta I can't
-even handle it anymore...
+When your functions return other functions, you can do some pretty neat stuff.
 
 """
         ]

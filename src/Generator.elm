@@ -8,7 +8,7 @@ import Page exposing (Page)
 import Page.About
 import Page.Home
 import Page.Thoughts
-import Page.Thoughts.YourFirstWebsite
+import Page.Thoughts.CurryingInJS
 import Page.Work
 import Platform
 import Slug
@@ -19,7 +19,7 @@ pages =
     [ pageInfo Page.Home.page
         [ pageInfo Page.About.page []
         , pageInfo Page.Thoughts.page
-            [ pageInfo Page.Thoughts.YourFirstWebsite.page []
+            [ pageInfo Page.Thoughts.CurryingInJS.page []
             ]
         , pageInfo Page.Work.page
             []

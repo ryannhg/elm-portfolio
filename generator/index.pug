@@ -31,6 +31,7 @@ html(lang="en")
         switch (message) {
           case 'URL_CHANGE':
             return setTimeout(function () {
+              window.scrollTo(0, 0)
               document.querySelectorAll('pre code')
                 .forEach(hljs.highlightBlock)
             }, 100)
