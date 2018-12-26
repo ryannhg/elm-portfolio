@@ -8,6 +8,7 @@ const start = _ =>
     .then(map(toHtml([])))
     .then(reduce(flattenChildren, []))
     .then(pages => Promise.all(pages.map(generateFile)))
+    .then(makeSitemapFromUrls)
     .then(console.log)
     .catch(console.error)
 
@@ -57,5 +58,19 @@ const generateFile = ({ file, url, html }) =>
       resolve(url)
     )
   })
+
+// Sitemap
+const makeSitemapFromUrls = (urls) => {
+  const sm = require('sitemap')
+
+  const sitemap = sm.createSitemap({
+    hostname: 'http://www.ryannhg.com',
+    cacheTime: 600000, // 600 sec (10 min) cache purge period
+    urls: urls.map(url => ({ url }))
+  })
+
+  fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemap.toString())
+  return urls
+}
 
 start()

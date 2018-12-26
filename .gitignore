@@ -4,3 +4,4 @@ generator.elm.js
 public/elm.js
 public/**/*.html
 .DS_Store
+public/sitemap.xml
