@@ -478,6 +478,7 @@ myFooter =
                         a
                             [ href url
                             , Attr.target "_blank"
+                            , Attr.rel "noopener"
                             , css
                                 [ marginRight (rem 1)
                                 , lastChild [ marginRight zero ]
