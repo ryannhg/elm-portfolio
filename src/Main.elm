@@ -479,6 +479,7 @@ myFooter =
                             [ href url
                             , Attr.target "_blank"
                             , Attr.rel "noopener"
+                            , Attr.attribute "aria-label" icon
                             , css
                                 [ marginRight (rem 1)
                                 , lastChild [ marginRight zero ]
