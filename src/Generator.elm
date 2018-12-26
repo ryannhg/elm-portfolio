@@ -10,8 +10,6 @@ import Page.Home
 import Page.Thoughts
 import Page.Thoughts.YourFirstWebsite
 import Page.Work
-import Page.Work.DentonDesign
-import Page.Work.MichaelCorrey
 import Platform
 import Slug
 
@@ -24,9 +22,7 @@ pages =
             [ pageInfo Page.Thoughts.YourFirstWebsite.page []
             ]
         , pageInfo Page.Work.page
-            [ pageInfo Page.Work.DentonDesign.page []
-            , pageInfo Page.Work.MichaelCorrey.page []
-            ]
+            []
         ]
     ]
 

@@ -10,7 +10,6 @@ type Route
     = Home
     | About
     | Work
-    | WorkDetail String
     | Thought (Maybe String)
     | ThoughtDetail String
     | NotFound
@@ -27,9 +26,6 @@ toString route_ =
 
         Work ->
             "/work"
-
-        WorkDetail slug ->
-            "/work/" ++ slug
 
         Thought tag ->
             case tag of
@@ -53,7 +49,6 @@ fromUrl =
             [ map Home top
             , map About (s "about")
             , map Work (s "work")
-            , map WorkDetail (s "work" </> string)
             , map Thought (s "thoughts" <?> Query.string "tag")
             , map ThoughtDetail (s "thoughts" </> string)
             ]

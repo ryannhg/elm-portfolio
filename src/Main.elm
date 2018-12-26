@@ -32,8 +32,6 @@ import Page.NotFound
 import Page.Thoughts
 import Page.Thoughts.YourFirstWebsite
 import Page.Work
-import Page.Work.DentonDesign
-import Page.Work.MichaelCorrey
 import Route exposing (Route(..))
 import Url exposing (Url)
 
@@ -127,17 +125,6 @@ view model =
 
                 Work ->
                     Page.Work.page
-
-                WorkDetail slug_ ->
-                    case slug_ of
-                        "denton-design" ->
-                            Page.Work.DentonDesign.page
-
-                        "michael-correy" ->
-                            Page.Work.MichaelCorrey.page
-
-                        _ ->
-                            Page.NotFound.page
 
                 Thought tag ->
                     Page.Thoughts.page
