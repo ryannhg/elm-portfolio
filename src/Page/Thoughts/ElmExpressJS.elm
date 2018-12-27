@@ -18,7 +18,7 @@ page =
 ## What's ExpressJS?
 
 If you're not familiar with [ExpressJS](https://expressjs.com/), it's just a
-lightweight framework that makes building web applications really easy:
+lightweight framework that makes building web applications with NodeJS really easy:
 
 ```js
 const express = require('express')
@@ -65,7 +65,7 @@ Your project should now look like this:
 
 Let's create `src/Main.elm` and start coding!
 
-### `src/Main.elm`
+### Our main module
 
 First we define our module:
 
@@ -127,7 +127,7 @@ Finally, we defining all the possible messages our app can receive with `Msg`. F
 now, we are just going to define one message called `NoOp` that has no effect.
 (This will change soon too!)
 
-#### Defining `init`
+#### Defining init
 
 ```elm
 init : Flags -> (Model, Cmd Msg)
@@ -143,7 +143,7 @@ of two things when it's done:
 1. Any side effects we want to create on startup (`Cmd.none` means no side effects)
 
 
-#### Defining `update`
+#### Defining update
 
 The next function we should define is `update`, the thing that returns an update
 `Model` when a new `Msg` comes in.
@@ -168,7 +168,7 @@ When we receive a `NoOp` message, we simply return the `model` as it is, and use
 If we add more types of `Msg` later on, this `case of` will allow the Elm compiler
 to bring us back to `update` so we don't forget how to handle the new `Msg`!
 
-#### Defining `subscriptions`
+#### Defining subscriptions
 
 The `subscriptions` function takes in the current `Model` and returns subscriptions
 that should be able to send `Msg` later. For now, we don't need any subscriptions
@@ -266,7 +266,7 @@ with a `package.json` file that looks like this:
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo "Error: no test specified" && exit 1"
+    "test": "echo 'Error: no test specified' && exit 1"
   },
   "keywords": [],
   "author": "",
