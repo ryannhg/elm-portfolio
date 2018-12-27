@@ -31,6 +31,7 @@ import Page.Home
 import Page.NotFound
 import Page.Thoughts
 import Page.Thoughts.CurryingInJS
+import Page.Thoughts.ElmExpressJS
 import Page.Work
 import Route exposing (Route(..))
 import Url exposing (Url)
@@ -133,6 +134,9 @@ view model =
                     case slug_ of
                         "currying-in-js" ->
                             Page.Thoughts.CurryingInJS.page
+
+                        "elm-expressjs" ->
+                            Page.Thoughts.ElmExpressJS.page
 
                         _ ->
                             Page.NotFound.page
@@ -272,6 +276,9 @@ globalStyles =
                     [ maxWidth (pct 100)
                     , display block
                     , margin2 zero auto
+                    ]
+                , typeSelector "code"
+                    [ fontSize (px 18)
                     ]
                 ]
             ]

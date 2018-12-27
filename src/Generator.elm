@@ -9,6 +9,7 @@ import Page.About
 import Page.Home
 import Page.Thoughts
 import Page.Thoughts.CurryingInJS
+import Page.Thoughts.ElmExpressJS
 import Page.Work
 import Platform
 import Slug
@@ -20,6 +21,7 @@ pages =
         [ pageInfo Page.About.page []
         , pageInfo Page.Thoughts.page
             [ pageInfo Page.Thoughts.CurryingInJS.page []
+            , pageInfo Page.Thoughts.ElmExpressJS.page []
             ]
         , pageInfo Page.Work.page
             []

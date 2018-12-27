@@ -17,6 +17,13 @@ page =
 ## Latest posts
 ---
 
+### [Elm ExpressJS](/thoughts/elm-expressjs)
+###### December 2018
+
+Using Elm's ports to make a web server!
+
+---
+
 ### [Currying in JS](/thoughts/currying-in-js)
 ###### December 2018
 
