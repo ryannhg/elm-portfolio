@@ -162,7 +162,7 @@ globalStyles =
         , html
             [ height (pct 100)
             , fontSize (px 20)
-            , fontWeight (num 300)
+            , fontWeight (int 300)
             ]
         , each
             [ typeSelector "a"
