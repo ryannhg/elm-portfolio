@@ -479,7 +479,7 @@ Our Elm app is sending messages to NodeJS. We're using Elm on the backend!
 Next, we'll make Elm provide ExpressJS routes.
 
 But that was a lot of stuff I threw at you. Take a break, grab some coffee,
-I'll see you soon in part two!
+I'll see you soon in [part two](/thoughts/elm-expressjs-part-two)!
 
 """
         ]

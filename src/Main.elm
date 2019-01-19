@@ -32,6 +32,7 @@ import Page.NotFound
 import Page.Thoughts
 import Page.Thoughts.CurryingInJS
 import Page.Thoughts.ElmExpressJS
+import Page.Thoughts.ElmExpressJSPartTwo
 import Page.Work
 import Route exposing (Route(..))
 import Url exposing (Url)
@@ -137,6 +138,9 @@ view model =
 
                         "elm-expressjs" ->
                             Page.Thoughts.ElmExpressJS.page
+
+                        "elm-expressjs-part-two" ->
+                            Page.Thoughts.ElmExpressJSPartTwo.page
 
                         _ ->
                             Page.NotFound.page
@@ -276,9 +280,10 @@ globalStyles =
                     [ maxWidth (pct 100)
                     , display block
                     , margin2 zero auto
+                    , boxShadow4 zero (px 8) (px 24) (rgba 0 0 0 0.15)
                     ]
                 , typeSelector "code"
-                    [ fontSize (px 18)
+                    [ fontSize (Css.em 0.9)
                     ]
                 ]
             ]
