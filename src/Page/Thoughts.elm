@@ -18,7 +18,7 @@ page =
 ---
 
 ### [Elm ExpressJS: Part Two](/thoughts/elm-expressjs-part-two)
-###### December 2018
+###### January 2018
 
 Part two in the epic saga of making a web server with Elm!
 
