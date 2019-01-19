@@ -20,9 +20,9 @@ page =
                 [ Page.Content """
 ## Oh hey there!
 
-That's right, I'm a geeky web boy. I love building things in Elm, and I'm
-always trying to keep an eye out for a new language to stretch out my brain and make
-me feel weird and insecure.
+My name's Ryan, and I build things for the web. I _really_ love building things
+in Elm, and I'm always trying learn new things that stretch out my brain and
+make me feel weird and insecure.
 
 [Read my origin story](/about)
 
