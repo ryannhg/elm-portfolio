@@ -310,7 +310,7 @@ Head over to http://localhost:3000 look at that `h1` tag!
 And check out that page source:
 
 ```html
-<h1>This is the homepage!</h1>
+<h1 class="title">This is the homepage!</h1>
 ```
 
 We can use the `html`, `body`, and other functions in `Ssr.Html` to make a full
