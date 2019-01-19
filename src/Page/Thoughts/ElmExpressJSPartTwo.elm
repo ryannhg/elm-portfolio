@@ -241,7 +241,7 @@ port outgoing : List Route -> Cmd msg
 ```
 
 
-### Updating the Express app
+## Updating the Express app
 
 Let's replace the routes we made in JS with the ones we just defined in Elm:
 
@@ -279,7 +279,7 @@ We'll see that our routes are actually coming from Elm:
 ![Offices page screenshot](/images/thoughts/elmexpress/offices-elm.jpg)
 
 
-### Hooray!
+## Hooray!
 
 If we update the routes in our Elm app (and rebuild it), you'll see our web
 server is serving the routes we define.
