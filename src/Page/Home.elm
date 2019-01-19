@@ -31,9 +31,9 @@ make me feel weird and insecure.
 
 ## My work.
 
-I love building awesome websites in my free time. I've already made a couple
+My friends and I create awesome websites. I've already been able to make a few
 award-winning sites in my free time, and I've written about them so you can learn
-more about them.
+check them out if you'd like.
 
 [Explore my work](/work)
 
@@ -42,9 +42,8 @@ more about them.
 ## My latest thoughts.
 
 In an attempt to share some of the neat stuff I've learned recently, I'm creating
-a collection of articles on random tech topics.
-
-You can browse the latest posts by checking it out
+a collection of articles on random tech topics. I'm interested in a lot of things,
+so the topics cover a wide variety of things.
 
 [Find something you like](/thoughts)
 
