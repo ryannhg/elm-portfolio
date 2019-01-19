@@ -42,8 +42,8 @@ check them out if you'd like.
 ## My latest thoughts.
 
 In an attempt to share some of the neat stuff I've learned recently, I'm creating
-a collection of articles on random tech topics. I'm interested in a lot of things,
-so the topics cover a wide variety of things.
+a collection of articles on random tech topics. I'm interested in a lot,
+so the content covers a wide variety of things.
 
 [Find something you like](/thoughts)
 
