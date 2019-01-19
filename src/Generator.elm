@@ -10,6 +10,7 @@ import Page.Home
 import Page.Thoughts
 import Page.Thoughts.CurryingInJS
 import Page.Thoughts.ElmExpressJS
+import Page.Thoughts.ElmExpressJSPartThree
 import Page.Thoughts.ElmExpressJSPartTwo
 import Page.Work
 import Platform
@@ -24,6 +25,7 @@ pages =
             [ pageInfo Page.Thoughts.CurryingInJS.page []
             , pageInfo Page.Thoughts.ElmExpressJS.page []
             , pageInfo Page.Thoughts.ElmExpressJSPartTwo.page []
+            , pageInfo Page.Thoughts.ElmExpressJSPartThree.page []
             ]
         , pageInfo Page.Work.page
             []

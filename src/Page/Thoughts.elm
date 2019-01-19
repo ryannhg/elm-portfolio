@@ -17,6 +17,13 @@ page =
 ## Latest posts
 ---
 
+### [Elm ExpressJS: Part Three](/thoughts/elm-expressjs-part-three)
+###### January 2018
+
+Part three in the epic saga of making a web server with Elm!
+
+---
+
 ### [Elm ExpressJS: Part Two](/thoughts/elm-expressjs-part-two)
 ###### January 2018
 

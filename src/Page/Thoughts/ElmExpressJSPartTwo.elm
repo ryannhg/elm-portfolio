@@ -66,7 +66,7 @@ For this simple example, it's clear that there are only two differences between
 each of the three express routes:
 
 - The path (`/`, `/people`, or `/offices`)
-- The content (`Hello from...`)
+- The response (`Hello from...`)
 
 Let's move that information into a list we can loop through:
 
@@ -77,21 +77,21 @@ const app = express()
 const routes = [
   {
     path: '/',
-    content: 'Hello from homepage!'
+    response: 'Hello from homepage!'
   },
   {
     path: '/people',
-    content: 'Hello from people page!'
+    response: 'Hello from people page!'
   },
   {
     path: '/offices',
-    content: 'Hello from offices page!'
+    response: 'Hello from offices page!'
   }
 ]
 
 routes.forEach(route => {
   app.get(route.path, (req, res) =>
-    res.send(route.content)
+    res.send(route.response)
   )
 })
 
@@ -120,7 +120,7 @@ port module Main exposing (main)
 
 type alias Route =
     { path : String
-    , content : String
+    , response : String
     }
 
 -- The rest of our code
@@ -138,7 +138,7 @@ port module Main exposing (main)
 
 type alias Route =
     { path : String
-    , content : String
+    , response : String
     }
 
 routes : List Route
@@ -152,14 +152,14 @@ routes =
 ```
 
 Using `Route` as a "type constructor", we can associate the first String with
-`path` and the second String with `content`.
+`path` and the second String with `response`.
 
 To help visualize what is in `routes`, here's its value:
 
 ```elm
-  [ { path = "/", content = "Elm says 'Hello from home!'" }
-  , { path = "/people", content = "Elm says 'Hello from people!'" }
-  , { path = "/offices", content = "Elm says 'Hello from offices!'" }
+  [ { path = "/", response = "Elm says 'Hello from home!'" }
+  , { path = "/people", response = "Elm says 'Hello from people!'" }
+  , { path = "/offices", response = "Elm says 'Hello from offices!'" }
   ]
 ```
 
@@ -189,7 +189,7 @@ port module Main exposing (main)
 
 type alias Route =
     { path : String
-    , content : String
+    , response : String
     }
 
 
@@ -256,7 +256,7 @@ const app = express()
 elmApp.ports.outgoing.subscribe((routes) => {
   routes.forEach(route => {
     app.get(route.path, (req, res) =>
-      res.send(route.content)
+      res.send(route.response)
     )
   })
 

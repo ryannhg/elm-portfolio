@@ -32,6 +32,7 @@ import Page.NotFound
 import Page.Thoughts
 import Page.Thoughts.CurryingInJS
 import Page.Thoughts.ElmExpressJS
+import Page.Thoughts.ElmExpressJSPartThree
 import Page.Thoughts.ElmExpressJSPartTwo
 import Page.Work
 import Route exposing (Route(..))
@@ -141,6 +142,9 @@ view model =
 
                         "elm-expressjs-part-two" ->
                             Page.Thoughts.ElmExpressJSPartTwo.page
+
+                        "elm-expressjs-part-three" ->
+                            Page.Thoughts.ElmExpressJSPartThree.page
 
                         _ ->
                             Page.NotFound.page
