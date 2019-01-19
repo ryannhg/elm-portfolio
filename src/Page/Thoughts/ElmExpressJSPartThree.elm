@@ -303,7 +303,7 @@ npm run build
 npm run start
 ```
 
-Head over to http://localhost:3000 look at that `h1` tag!
+Head over to http://localhost:3000 and look at that `h1` tag!
 
 ![An h1 tag actually showing up](/images/thoughts/elmexpress/home-h1.jpg)
 
@@ -313,8 +313,11 @@ And check out that page source:
 <h1 class="title">This is the homepage!</h1>
 ```
 
+### Making something prettier
+
 We can use the `html`, `body`, and other functions in `Ssr.Html` to make a full
-web page with actual CSS and JS too
+web page with actual CSS and JS too!
+
 
 ## Hooray!
 
@@ -335,6 +338,9 @@ There's still a lot of interesting areas to explore before this is complete:
 
 If you'd like to play around with the project, it's source code is available on 
 Github [over here](https://github.com/ryannhg/elm-express).
+
+(I've organized the content into an `Express` module, so the `Main` module has
+all your routes.)
 
 Thanks for reading, maybe I'll continue this exploration further later on!
 
