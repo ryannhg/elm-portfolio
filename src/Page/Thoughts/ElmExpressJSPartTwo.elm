@@ -287,7 +287,8 @@ If we update the routes in our Elm app (and rebuild it), you'll see our web
 server is serving the routes we define.
 
 There's still more to do before this is a useful thing to use (like maybe sending
-HTML instead of a string), so stay tuned for part three, where we generate our
+HTML instead of a string), so stay tuned for
+[part three](/thoughts/elm-expressjs-part-three), where we generate our
 response with something like Elm's `Html` library.
 """
         ]
